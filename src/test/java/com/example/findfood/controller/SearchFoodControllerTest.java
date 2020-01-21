@@ -30,7 +30,7 @@ class SearchFoodControllerTest {
     @Mock
     FoodService foodService;
 
-    private String path = "/api/foods";
+    private String path = "/api/food";
 
     @BeforeEach
     public void setUp() {

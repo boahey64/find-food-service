@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/foods")
+@RequestMapping("/api/food")
 public class SearchFoodController {
     private static final Logger log = LoggerFactory.getLogger(SearchFoodController.class);
     private FoodService foodService;

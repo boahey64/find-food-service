@@ -9,4 +9,4 @@
     ./mvnw spring-boot:run    
 
 ## rest API
-    /api/foods/search
+    /api/food/search

@@ -20,14 +20,14 @@ class SearchFoodControllerIT {
 
     @Test
     public void call_with_param_query() throws Exception {
-        this.mvc.perform(MockMvcRequestBuilders.get("/api/foods/search")
+        this.mvc.perform(MockMvcRequestBuilders.get("/api/food/search")
                 .param("query", "asc"))
                 .andExpect(MockMvcResultMatchers.status().isOk());
     }
 
     @Test
     public void call_without_param_query() throws Exception {
-        this.mvc.perform(MockMvcRequestBuilders.get("/api/foods/search"))
+        this.mvc.perform(MockMvcRequestBuilders.get("/api/food/search"))
                 .andExpect(MockMvcResultMatchers.status().is4xxClientError());
     }
 }
