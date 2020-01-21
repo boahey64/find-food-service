@@ -8,10 +8,13 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 
 public class SearchFoodServiceTest {
-    private SearchFoodService serviceUnderTest = new SearchFoodService();
+    private SearchFoodService serviceUnderTest = new SearchFoodService(
+            "ca406771bb6b41bf89f1d9039a0c3496",
+            "1c1d7d806b32493b8963d993b96f63b9"
+    );
 
     @Test
-    public void name() {
+    public void search_food_items() {
         Response<CompactFood> actual = serviceUnderTest.searchFoodItems();
 
         assertNotNull(actual);
