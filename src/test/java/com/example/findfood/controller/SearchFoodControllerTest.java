@@ -1,9 +1,6 @@
 package com.example.findfood.controller;
 
 import com.example.findfood.service.SearchFoodService;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fatsecret.platform.model.CompactFood;
 import com.fatsecret.platform.services.Response;
 import com.google.gson.Gson;
@@ -15,7 +12,6 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.http.ResponseEntity;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -47,7 +43,7 @@ class SearchFoodControllerTest {
 
         when(searchFoodService.searchFoodItems()).thenReturn(aResponseOfCompactFoodItems());
 
-        Response<CompactFood> actual = searchFoodController.showSearch();
+        Response<CompactFood> actual = searchFoodController.search("pasta");
 
         assertThat(actual, notNullValue());
         assertEquals(actual.getPageNumber(), 3);

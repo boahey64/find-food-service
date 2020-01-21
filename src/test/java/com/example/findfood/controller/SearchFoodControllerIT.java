@@ -1,56 +1,33 @@
 package com.example.findfood.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
-import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.boot.web.server.LocalServerPort;
-import org.springframework.http.ResponseEntity;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import java.net.URL;
-
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.core.IsNull.notNullValue;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-@ExtendWith(MockitoExtension.class)
 @RunWith(JUnitPlatform.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest
+@AutoConfigureMockMvc
 class SearchFoodControllerIT {
 
     @Autowired
-    private TestRestTemplate restTemplate;
+    private MockMvc mvc;
 
-    @LocalServerPort
-    private int port;
-
-    private String path = "/api/foods";
-
-    @BeforeEach
-    public void setUp() {
+    @Test
+    public void call_with_param_query() throws Exception {
+        this.mvc.perform(MockMvcRequestBuilders.get("/api/foods/search")
+                .param("query", "asc"))
+                .andExpect(MockMvcResultMatchers.status().isOk());
     }
 
     @Test
-    public void call_search() throws Exception {
-        ResponseEntity<String> response = restTemplate.getForEntity(
-                new URL("http://localhost:" + port + "/").toString() + path + "/search", String.class);
-
-        JsonNode root = mapResponseBodyToJson(response);
-        JsonNode pageNumber = root.path("pageNumber");
-        assertThat(pageNumber.asInt(), notNullValue());
-
-    }
-
-    private JsonNode mapResponseBodyToJson(ResponseEntity<String> response) throws JsonProcessingException {
-        ObjectMapper mapper = new ObjectMapper();
-        return mapper.readTree(response.getBody());
+    public void call_without_param_query() throws Exception {
+        this.mvc.perform(MockMvcRequestBuilders.get("/api/foods/search"))
+                .andExpect(MockMvcResultMatchers.status().is4xxClientError());
     }
 }
