@@ -1,6 +1,6 @@
 package com.example.findfood.controller;
 
-import com.example.findfood.service.SearchFoodService;
+import com.example.findfood.service.FoodService;
 import com.fatsecret.platform.model.CompactFood;
 import com.fatsecret.platform.services.Response;
 import com.google.gson.Gson;
@@ -28,7 +28,7 @@ class SearchFoodControllerTest {
     SearchFoodController searchFoodController;
 
     @Mock
-    SearchFoodService searchFoodService;
+    FoodService foodService;
 
     private String path = "/api/foods";
 
@@ -41,7 +41,7 @@ class SearchFoodControllerTest {
         MockHttpServletRequest request = new MockHttpServletRequest();
         RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
 
-        when(searchFoodService.searchFoodItems("pasta")).thenReturn(aResponseOfCompactFoodItems());
+        when(foodService.searchFoodItems("pasta")).thenReturn(aResponseOfCompactFoodItems());
 
         Response<CompactFood> actual = searchFoodController.search("pasta");
 

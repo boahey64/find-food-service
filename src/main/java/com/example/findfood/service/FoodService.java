@@ -11,15 +11,15 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class SearchFoodService {
-    private static final Logger log = LoggerFactory.getLogger(SearchFoodService.class);
+public class FoodService {
+    private static final Logger log = LoggerFactory.getLogger(FoodService.class);
 
     private String oauthClientId;
     private String oauthClientSecret;
 
     private FatsecretService fatsecretService;
 
-    public SearchFoodService(
+    public FoodService(
             @Value("${oauth.client.id}") String oauthClientId,
             @Value("${oauth.client.secret}") String oauthClientSecret
     ) {
