@@ -15,7 +15,7 @@ public class SearchFoodServiceTest {
 
     @Test
     public void search_food_items() {
-        Response<CompactFood> actual = serviceUnderTest.searchFoodItems();
+        Response<CompactFood> actual = serviceUnderTest.searchFoodItems("pasta");
 
         assertNotNull(actual);
     }

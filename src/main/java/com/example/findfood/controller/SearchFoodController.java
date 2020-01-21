@@ -27,7 +27,7 @@ public class SearchFoodController {
             @RequestParam String query
     ) {
         log.info("query: {}", query);
-        return searchFoodService.searchFoodItems();
+        return searchFoodService.searchFoodItems(query);
     }
 
 }

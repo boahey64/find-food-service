@@ -17,25 +17,30 @@ public class SearchFoodService {
     private String oauthClientId;
     private String oauthClientSecret;
 
+    private FatsecretService fatsecretService;
+
     public SearchFoodService(
             @Value("${oauth.client.id}") String oauthClientId,
             @Value("${oauth.client.secret}") String oauthClientSecret
     ) {
         this.oauthClientId = oauthClientId;
         this.oauthClientSecret = oauthClientSecret;
+
+        fatsecretService = new FatsecretService(oauthClientId, oauthClientSecret);
     }
 
-    public Response<CompactFood> searchFoodItems() {
-        FatsecretService service = new FatsecretService(oauthClientId, oauthClientSecret);
+    public Response<CompactFood> searchFoodItems(String query) {
+        if(query.isEmpty()) {
+            return null;
+        }
 
-        String query = "pasta"; //Your query string
-        Response<CompactFood> response = service.searchFoods(query);
+        Response<CompactFood> response = fatsecretService.searchFoods(query);
         //This response contains the list of food items at zeroth page for your query
 
         List<CompactFood> results = response.getResults();
         //This list contains summary information about the food items
 
-        Response<CompactFood> responseAtPage3 = service.searchFoods(query, 3);
+        Response<CompactFood> responseAtPage3 = fatsecretService.searchFoods(query, 3);
         //This response contains the list of food items at page number 3 for your query
         //If total results are less, then this response will have empty list of the food items
         log.info("responseAtPage3: {}", responseAtPage3);
