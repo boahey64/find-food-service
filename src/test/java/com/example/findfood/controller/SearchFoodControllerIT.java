@@ -1,5 +1,6 @@
 package com.example.findfood.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
@@ -41,6 +42,15 @@ class SearchFoodControllerIT {
     public void call_search() throws Exception {
         ResponseEntity<String> response = restTemplate.getForEntity(
                 new URL("http://localhost:" + port + "/").toString() + path + "/search", String.class);
-        assertEquals("Hello Search", response.getBody());
+
+        JsonNode root = mapResponseBodyToJson(response);
+        JsonNode pageNumber = root.path("pageNumber");
+        assertThat(pageNumber.asInt(), notNullValue());
+
+    }
+
+    private JsonNode mapResponseBodyToJson(ResponseEntity<String> response) throws JsonProcessingException {
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.readTree(response.getBody());
     }
 }
