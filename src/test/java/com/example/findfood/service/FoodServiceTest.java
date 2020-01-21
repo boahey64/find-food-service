@@ -1,6 +1,7 @@
 package com.example.findfood.service;
 
 import com.fatsecret.platform.model.CompactFood;
+import com.fatsecret.platform.model.Food;
 import com.fatsecret.platform.services.Response;
 import org.junit.jupiter.api.Test;
 
@@ -16,6 +17,13 @@ public class FoodServiceTest {
     @Test
     public void search_food_items() {
         Response<CompactFood> actual = serviceUnderTest.searchFoodItems("pasta");
+
+        assertNotNull(actual);
+    }
+
+    @Test
+    public void get_food_item() {
+        Food actual = serviceUnderTest.getFoodItem(77518L);
 
         assertNotNull(actual);
     }

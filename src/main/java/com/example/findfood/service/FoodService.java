@@ -1,6 +1,7 @@
 package com.example.findfood.service;
 
 import com.fatsecret.platform.model.CompactFood;
+import com.fatsecret.platform.model.Food;
 import com.fatsecret.platform.services.FatsecretService;
 import com.fatsecret.platform.services.Response;
 import org.slf4j.Logger;
@@ -45,6 +46,13 @@ public class FoodService {
         //If total results are less, then this response will have empty list of the food items
         log.info("responseAtPage3: {}", responseAtPage3);
         return responseAtPage3;
+    }
+
+    public Food getFoodItem(Long id) {
+        String key = "Replace this by your Application Consumer Key";
+        String secret = "Replace this by your Consumer Secret";
+
+        return fatsecretService.getFood(id);
     }
 
 }
