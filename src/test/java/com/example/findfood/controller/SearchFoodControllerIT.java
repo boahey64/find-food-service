@@ -41,6 +41,6 @@ class SearchFoodControllerIT {
     public void call_search() throws Exception {
         ResponseEntity<String> response = restTemplate.getForEntity(
                 new URL("http://localhost:" + port + "/").toString() + path + "/search", String.class);
-        assertEquals("Hello Controller", response.getBody());
+        assertEquals("Hello Search", response.getBody());
     }
 }
