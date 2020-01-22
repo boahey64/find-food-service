@@ -20,8 +20,8 @@ public class SearchFoodController {
         this.foodService = foodService;
     }
 
-    @GetMapping("/search")
-    public Response<CompactFood> search(@RequestParam String query) {
+    @GetMapping("/items")
+    public Response<CompactFood> itemsSearch(@RequestParam String query) {
         log.info("query: {}", query);
         return foodService.searchFoodItems(query);
     }

@@ -44,7 +44,7 @@ class SearchFoodControllerTest {
 
         when(foodService.searchFoodItems("pasta")).thenReturn(aResponseOfCompactFoodItems());
 
-        Response<CompactFood> actual = searchFoodController.search("pasta");
+        Response<CompactFood> actual = searchFoodController.itemsSearch("pasta");
 
         assertThat(actual, notNullValue());
         assertEquals(actual.getPageNumber(), 3);

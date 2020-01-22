@@ -29,8 +29,6 @@ public class FoodService {
         }
 
         Response<CompactFood> response = fatSecretAdapter.searchFoodItems(query);
-        //This response contains the list of food items at page number 3 for your query
-        //If total results are less, then this response will have empty list of the food items
         log.info("response: {}", response);
         return response;
     }
