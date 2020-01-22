@@ -49,7 +49,6 @@ class SearchFoodControllerTest {
         assertEquals(actual.getPageNumber(), 3);
     }
 
-
     private Response<CompactFood> aResponseOfCompactFoodItems() {
         Gson g = new Gson();
         String jsonString = "{\"pageNumber\":3,\"maxResults\":50,\"totalResults\":2000,\"results\":[]}";
