@@ -25,8 +25,8 @@ public class FatSecretAdapter {
         fatsecretService = new FatsecretService(oauthClientId, oauthClientSecret);
     }
 
-    public Response<CompactFood> searchFoodItems(String query) {
-        return fatsecretService.searchFoods(query);
+    public Response<CompactFood> searchFoodItems(String query, Integer page) {
+        return fatsecretService.searchFoods(query, page);
     }
 
     public Food getFoodItem(Long id) {

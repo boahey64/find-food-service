@@ -44,7 +44,7 @@ class FoodControllerTest {
         MockHttpServletRequest request = new MockHttpServletRequest();
         RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
 
-        when(foodService.searchFoodItems("pasta")).thenReturn(aResponseOfCompactFoodItems());
+        when(foodService.searchFoodItems("pasta", 0)).thenReturn(aResponseOfCompactFoodItems());
 
         Response<CompactFood> actual = foodController.itemsSearch("pasta", Optional.empty());
 
@@ -57,7 +57,7 @@ class FoodControllerTest {
         MockHttpServletRequest request = new MockHttpServletRequest();
         RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
 
-        when(foodService.searchFoodItems("pasta")).thenReturn(aResponseOfCompactFoodItems());
+        when(foodService.searchFoodItems("pasta", 0)).thenReturn(aResponseOfCompactFoodItems());
 
         Response<CompactFood> actual = foodController.itemsSearch("pasta", Optional.of(0));
 

@@ -25,7 +25,7 @@ public class FoodController {
     @GetMapping("/items")
     public Response<CompactFood> itemsSearch(@RequestParam String query, Optional<Integer> page) {
         log.info("query: {}", query);
-        return foodService.searchFoodItems(query);
+        return foodService.searchFoodItems(query, page.orElse(0));
     }
 
     @GetMapping("/items/{itemId}")

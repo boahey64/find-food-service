@@ -4,7 +4,6 @@ import com.fatsecret.platform.model.CompactFood;
 import com.fatsecret.platform.model.Food;
 import com.fatsecret.platform.services.Response;
 import com.google.gson.Gson;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -25,9 +24,9 @@ public class FoodServiceTest {
 
     @Test
     public void search_food_items() {
-        when(fatSecretAdapter.searchFoodItems("pasta")).thenReturn(aResponseOfCompactFoodItems());
+        when(fatSecretAdapter.searchFoodItems("pasta", 0)).thenReturn(aResponseOfCompactFoodItems());
 
-        Response<CompactFood> actual = serviceUnderTest.searchFoodItems("pasta");
+        Response<CompactFood> actual = serviceUnderTest.searchFoodItems("pasta", 0);
 
         assertNotNull(actual);
     }
