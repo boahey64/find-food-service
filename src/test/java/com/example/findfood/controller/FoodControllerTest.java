@@ -24,9 +24,9 @@ import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 @RunWith(JUnitPlatform.class)
-class SearchFoodControllerTest {
+class FoodControllerTest {
     @InjectMocks
-    SearchFoodController searchFoodController;
+    FoodController foodController;
 
     @Mock
     FoodService foodService;
@@ -44,7 +44,7 @@ class SearchFoodControllerTest {
 
         when(foodService.searchFoodItems("pasta")).thenReturn(aResponseOfCompactFoodItems());
 
-        Response<CompactFood> actual = searchFoodController.itemsSearch("pasta");
+        Response<CompactFood> actual = foodController.itemsSearch("pasta");
 
         assertThat(actual, notNullValue());
         assertEquals(actual.getPageNumber(), 3);
@@ -57,7 +57,7 @@ class SearchFoodControllerTest {
 
         when(foodService.getFoodItem(123L)).thenReturn(aFoodItem());
 
-        Food actual = searchFoodController.getFoodItem(123L);
+        Food actual = foodController.getFoodItem(123L);
 
         assertThat(actual, notNullValue());
     }

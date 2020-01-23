@@ -13,7 +13,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 @RunWith(JUnitPlatform.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-class SearchFoodControllerIT {
+class FoodControllerIT {
 
     @Autowired
     private MockMvc mvc;

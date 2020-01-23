@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/food")
-public class SearchFoodController {
-    private static final Logger log = LoggerFactory.getLogger(SearchFoodController.class);
+public class FoodController {
+    private static final Logger log = LoggerFactory.getLogger(FoodController.class);
     private FoodService foodService;
 
     @Autowired
-    public SearchFoodController(FoodService foodService) {
+    public FoodController(FoodService foodService) {
         this.foodService = foodService;
     }
 
