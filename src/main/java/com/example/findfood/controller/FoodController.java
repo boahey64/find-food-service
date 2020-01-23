@@ -9,6 +9,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/api/food")
 public class FoodController {
@@ -21,7 +23,7 @@ public class FoodController {
     }
 
     @GetMapping("/items")
-    public Response<CompactFood> itemsSearch(@RequestParam String query) {
+    public Response<CompactFood> itemsSearch(@RequestParam String query, Optional<Integer> page) {
         log.info("query: {}", query);
         return foodService.searchFoodItems(query);
     }

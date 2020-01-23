@@ -17,6 +17,8 @@ import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
+import java.util.Optional;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsNull.notNullValue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -38,13 +40,26 @@ class FoodControllerTest {
     }
 
     @Test
-    public void call_search() throws Exception {
+    public void call_search_with_param_query() throws Exception {
         MockHttpServletRequest request = new MockHttpServletRequest();
         RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
 
         when(foodService.searchFoodItems("pasta")).thenReturn(aResponseOfCompactFoodItems());
 
-        Response<CompactFood> actual = foodController.itemsSearch("pasta");
+        Response<CompactFood> actual = foodController.itemsSearch("pasta", Optional.empty());
+
+        assertThat(actual, notNullValue());
+        assertEquals(actual.getPageNumber(), 3);
+    }
+
+    @Test
+    public void call_search_with_param_query_and_param_page() throws Exception {
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
+
+        when(foodService.searchFoodItems("pasta")).thenReturn(aResponseOfCompactFoodItems());
+
+        Response<CompactFood> actual = foodController.itemsSearch("pasta", Optional.of(0));
 
         assertThat(actual, notNullValue());
         assertEquals(actual.getPageNumber(), 3);
