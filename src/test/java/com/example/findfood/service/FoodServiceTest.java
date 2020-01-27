@@ -20,11 +20,11 @@ public class FoodServiceTest {
     FoodService serviceUnderTest;
 
     @Mock
-    FatSecretAdapter fatSecretAdapter;
+    FatSecretFacade fatSecretFacade;
 
     @Test
     public void search_food_items() {
-        when(fatSecretAdapter.searchFoodItems("pasta", 0)).thenReturn(aResponseOfCompactFoodItems());
+        when(fatSecretFacade.searchFoodItems("pasta", 0)).thenReturn(aResponseOfCompactFoodItems());
 
         Response<CompactFood> actual = serviceUnderTest.searchFoodItems("pasta", 0);
 
@@ -33,7 +33,7 @@ public class FoodServiceTest {
 
     @Test
     public void get_food_item() {
-        when(fatSecretAdapter.getFoodItem(77518L)).thenReturn(aFoodItem());
+        when(fatSecretFacade.getFoodItem(77518L)).thenReturn(aFoodItem());
 
         Food actual = serviceUnderTest.getFoodItem(77518L);
 

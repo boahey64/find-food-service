@@ -8,14 +8,14 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
-public class FatSecretAdapter {
+public class FatSecretFacade {
 
     private String oauthClientId;
     private String oauthClientSecret;
 
     private FatsecretService fatsecretService;
 
-    public FatSecretAdapter(
+    public FatSecretFacade(
             @Value("${oauth.client.id}") String oauthClientId,
             @Value("${oauth.client.secret}") String oauthClientSecret
     ) {
