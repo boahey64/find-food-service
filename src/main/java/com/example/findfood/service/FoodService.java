@@ -12,11 +12,11 @@ import org.springframework.stereotype.Service;
 public class FoodService {
     private static final Logger log = LoggerFactory.getLogger(FoodService.class);
 
-    private FatSecretFacade fatSecretFacade;
+    private FoodSearchService foodSearchService;
 
     @Autowired
-    public FoodService(FatSecretFacade fatSecretFacade) {
-        this.fatSecretFacade = fatSecretFacade;
+    public FoodService(FoodSearchService foodSearchService) {
+        this.foodSearchService = foodSearchService;
     }
 
     public Response<CompactFood> searchFoodItems(String query, Integer page) {
@@ -24,16 +24,13 @@ public class FoodService {
             return null;
         }
 
-        Response<CompactFood> response = fatSecretFacade.searchFoodItems(query, page);
+        Response<CompactFood> response = foodSearchService.searchFoodItems(query, page);
         log.info("response: {}", response);
         return response;
     }
 
     public Food getFoodItem(Long id) {
-        String key = "Replace this by your Application Consumer Key";
-        String secret = "Replace this by your Consumer Secret";
-
-        return fatSecretFacade.getFoodItem(id);
+        return foodSearchService.getFoodItem(id);
     }
 
 }

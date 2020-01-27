@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
-public class FatSecretFacade {
+public class FatSecretFacade implements FoodSearchService {
 
     private String oauthClientId;
     private String oauthClientSecret;
@@ -25,12 +25,13 @@ public class FatSecretFacade {
         fatsecretService = new FatsecretService(oauthClientId, oauthClientSecret);
     }
 
+    @Override
     public Response<CompactFood> searchFoodItems(String query, Integer page) {
         return fatsecretService.searchFoods(query, page);
     }
 
+    @Override
     public Food getFoodItem(Long id) {
         return fatsecretService.getFood(id);
     }
-
 }
